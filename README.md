@@ -1,8 +1,6 @@
 # Content Framework
 
-This document describes a process for creating interactive content.  It begins with a general overview of out framework, and then provides a set of steps to follow.
-
-The goal of the framework is to take your original source material and turn it into a Docker Image that a user can run.
+This document describes a process for creating interactive content.  It begins with a general framework and then provides a set of steps to follow to take your original source material and turn it into a Docker Image that a user can run.
 
 <img style="{width: 100%}" src="images/images.001.jpg" />
 
@@ -10,27 +8,21 @@ The goal of the framework is to take your original source material and turn it i
 
 ### Source Content
 
-All the assets files that make up the project. For example, source content might be a set of markdown files, figures, code examples, and some custom css files.  All of these source assets are checked into a git repository.
+The source content are the files that make up the project. For example, source content might be a set of markdown files, figures, code examples, and some custom css files.  All of these source assets are checked into a git repository.
 
 ### Publishing Framework
 
-The publishing framework "transforms" source content into the final format the user sees.  A framework's power comes from the types of source content and user interactions it enables. For example, text, images and video are the basic table stakes, but a powerful framework can also deliver interactive charts that link to source data, executable code samples, complex equations and formulas, assessments, and so forth.
-
-There are 4 basic types of frameworks: WYSIWYG, database, build-based, and bespoke.
+The publishing framework "transforms" source content into the final format the user sees.  A framework's power comes from the types of source content and user interactions it enables. For example, text, images and video are the basic table stakes, but a powerful framework can also deliver interactive charts that link to source data, executable code samples, complex equations and formulas, assessments, and so forth. There are 2 major kinds of frameworks: WYSIWYG and "builds".
 
 * The *WYSIWYG* model combines the editor and the final format into one seamless environment. For example: Jupyter Notebooks, Nteract, Google Docs, etc.  The strength of the model is that it is generally simple for authors and other people in the production workflow to (as long as they have the right software installed).  The weakness is that you're limited to whatever tools that system supports.  The huge interest in the Jupyter comes from its support of a vast array of content types.
-* The *build* model requires a program to transform the source content into the final format.  Typically this program runs continuously to "watch" the source files and rebuilds whenever they change.  Examples of these systems include: jekyll, pelican, gitbook, latex, as well as "literate programming" tools like godocs.
-* The *database model* organizes the all the content elements into fields that are stored in a database that drives the final format.  For example: Wordpress, Codecademy.
-* The *bespoke* model is a custom application in which the author basically codes the final format from scratch.
+* The *build* model requires a program to transform the source content into the final format.  Typically this program runs continuously to "watch" the source files and rebuilds whenever they change.  Examples of these systems include static site generators like jekyll, pelican, gitbook, latex, as well as "literate programming" tools like godocs.
+
 
 ### Final format
 
-The final format is what you want the audience to get in the end.  For example,you might want them to have a Jupyter Notebook or a Jekyll site with a data visualization plugin.  Examples include:
+The final format is what you want the audience to get in the end.  For example, you might want them to have a Jupyter Notebook (a WYSIWYG model where the final format and the source are the same) or a Jekyll site with a data visualization plugin (a build model where the source is markdown files transformed into a static site).
 
-* A site built with Jekyll
-* Jupyter Notebook
-* Terminal / shell with file access
-* Toree application
+In addition, you might not want to include a site at all, but would instead simply want users to be able to run code in a bash shell with a tool like [gotty](https://github.com/yudai/gotty).
 
 ## Specifying the Dependencies with a Dockerfile
 
