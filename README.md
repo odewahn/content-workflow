@@ -26,9 +26,9 @@ In addition, you might not want to include a site at all, but would instead simp
 
 ## Specifying the Dependencies with a Dockerfile
 
-Once you have the content, you can add a file name `Dockerfile` to specify the required dependencies.  
+Once you have the content, you can add a file name `Dockerfile` to specify the required dependencies for both the content and for whatever is required by the final format. 
 
-A Dockerfile is  consists of simple instructions that are executed in order. For example, here's an example that installs a web-based terminal server called [gotty](https://github.com/yudai/gotty) onto the Alpine linux image:
+A Dockerfile is  consists of simple instructions that are executed in order. For example, here's an example that installs [gotty](https://github.com/yudai/gotty) onto the Alpine image (Alpine is a tiny Linux distribution of 5MB):
 
 ```
 FROM alpine:latest
@@ -45,13 +45,13 @@ RUN tar -zxvf gotty_linux_amd64.tar.gz
 RUN mv gotty /usr/local/bin/gotty
 
 
-# Expose the gotty port and the httpServe ports
+# Expose the gotty port
 EXPOSE 8080
 
 WORKDIR /usr/workdir
 
 # Install and run the startup script
-CMD gotty -w /bin/sh
+CMD gotty -p 8080 -w /bin/sh
 ```
 
 Here are some of the more common elements:
@@ -113,7 +113,7 @@ The Container is the last step in the process.  Once you're done creating the im
 
 With the overview complete, we're now ready to talk about how to work in this environment.  Since it's a very common use case, we'll focus on the workflow for Jupyter Notebooks, although the same principles will apply for other environments.
 
-The instructions below outline the steps to follow in order to edit your Jupyter notebook.
+The instructions below outline the steps to follow in order to work with the WYSIWYG Jupyter notebook.
 
 ## Before you start
 
@@ -198,9 +198,7 @@ Click the port you want.
 
 ### Edit your content
 
-Once you're in the Notebook environment, you can create files, run programs that are installed on the underlying image, and so forth.
-
-As you work, you can (and should!) periodically commit the changes in your branch and merge them to master, just as you would with a software project.
+Once you're in the Notebook environment, you can create files, run programs that are installed on the underlying image, and so forth. As you work, you can (and should!) periodically commit the changes in your branch and merge them to master, just as you would with a software project.
 
 #### Create the Dockerfile and/or installation instructions
 
